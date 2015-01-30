@@ -1,0 +1,54 @@
+﻿@using WebExtensions.PropertyEditorTypes
+@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.GalleryCategoryViewModel>
+@{
+    Layout = "Shared/_InnerLayout.cshtml";
+    var listWidth = 180 * Model.Galleries.Count + "px";
+    var galleries = Model.Galleries.Select(x => x.Media);
+    var lastMadia = new List<MediaFolderFeature>();
+    galleries.ForEach(x =>
+    {
+        x.ForEach(lastMadia.Add);
+    });
+    
+}
+@if (!Model.HideTitle)
+{
+    <h1 class="pink">@Model.Name</h1>
+}
+<div class="text-cat">
+    @Html.Raw(Model.PageBody)
+</div>
+<ul class="category-list clearfix" style="width:@listWidth">
+    @foreach (var item in @Model.Galleries.Where(x=>x.IsVisible))
+    {
+        <li>
+            <figure>
+                <a href="@item.Url">
+                    <img src="@item.ImageUrl?width=137&height=74&mode=crop" alt="@item.Name">
+                    <figcaption>
+                        @item.Name
+                    </figcaption>
+                </a>
+            </figure>
+        </li>
+    }
+</ul>
+<div class="row">
+    <div class="col-md-11 col-md-offset-1"><h2 class="MostNews">התמונות הכי חדשות</h2></div>
+    @Html.CachedPartial("_NewMedia", lastMadia.OrderByDescending(x=>x.Id).Take(10).ToList(),5,true)
+</div>
+@section scripts
+{
+    @*@Scripts.Render("~/scripts/grid-gallery")*@
+    @Scripts.Render("~/scripts/grid-gallery/imagesloaded.pkgd.min.js", "~/scripts/grid-gallery/masonry.pkgd.min.js", "~/scripts/grid-gallery/classie.js", "~/scripts/grid-gallery/cbpGridGallery.js"
+)
+    <script>
+        new CBPGridGallery(document.getElementById('grid-gallery'));
+    </script>
+}
+@section head
+{
+    @*@Styles.Render("~/css/grid-gallery")*@
+    @Styles.Render("~/css/grid-gallery/component.css", "~/css/grid-gallery/demo.css")
+    @Scripts.Render("~/scripts/grid-gallery/modernizr.custom.js")
+}

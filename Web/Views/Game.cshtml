@@ -1,0 +1,39 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.GameViewModel>
+@{
+    Layout = "Shared/_InnerLayout.cshtml";
+    ViewBag.Title = "gameCat";
+}
+
+<h1 class="green">
+    @if (!Model.HideTitle)
+    {
+        @Model.Name
+    }
+    <a class="back">חזור <i class="glyphicon-chevron-left glyphicon"></i></a>
+</h1>
+<div class="row">
+    <div class="col-md-12">
+        @if (!Model.HideSideMenu)
+        {
+            <div class="col-md-2">
+                @Html.CachedPartial("_SideNav", Model.SideNav, 5, true)
+            </div>
+        }
+        <div class="@(!Model.HideSideMenu?"col-md-10":"col-md-12")">
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Raw(Model.PageBody)
+                </div>
+            </div>
+            <div class="loading-img">
+                <div class="loading"></div>
+                <img src="@Model.LargeImageUrl" alt="@Model.Name" />
+            </div>
+            <div id="game" data-width="@Model.IframeWidth" data-height="@Model.IframeHeight" data-url="@Model.EmbedUrl"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+@Scripts.Render("~/scripts/gameScripts.js")
+}

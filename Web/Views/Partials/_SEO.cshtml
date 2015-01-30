@@ -1,0 +1,13 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.BaseViewModel>
+@{
+    var description = Model.MetaDescription;
+    var keywords = Model.MetaKeywords;
+}
+@if (!string.IsNullOrWhiteSpace(description))
+{
+    <meta name="description" content="@description">
+}
+@if (!string.IsNullOrWhiteSpace(keywords))
+{
+    <meta name="keywords" content="@keywords">
+}

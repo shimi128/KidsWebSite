@@ -1,0 +1,6 @@
+﻿2014-06-03 00:03:12,465 [45] WARN  Umbraco.Web.Models.Mapping.PreValueDisplayResolver - [Thread 37] Could not find persisted pre-value for field startNode
+2014-06-03 00:03:12,465 [45] WARN  Umbraco.Web.Models.Mapping.PreValueDisplayResolver - [Thread 37] Could not find persisted pre-value for field filter
+2014-06-03 00:03:12,465 [45] WARN  Umbraco.Web.Models.Mapping.PreValueDisplayResolver - [Thread 37] Could not find persisted pre-value for field minNumber
+2014-06-03 00:03:12,465 [45] WARN  Umbraco.Web.Models.Mapping.PreValueDisplayResolver - [Thread 37] Could not find persisted pre-value for field maxNumber
+2014-06-03 00:04:19,725 [45] INFO  Umbraco.Core.Publishing.PublishingStrategy - [Thread 21] Content 'בית' with Id '1050' has been published.
+2014-06-03 00:04:27,208 [45] INFO  Umbraco.Core.Publishing.PublishingStrategy - [Thread 43] Content 'בית' with Id '1050' has been published.

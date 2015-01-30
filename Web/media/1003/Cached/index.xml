@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<imageIndex>
+  <_c>
+    <image>
+      <originalFileName>chrysanthemum.jpg</originalFileName>
+      <size>879394</size>
+      <dateLastModified>Thu, 26 Jun 2014 03:23:07 GMT</dateLastModified>
+      <width>1024</width>
+      <height>768</height>
+      <cachedImage>
+        <fileName>CHR_31014a4190642fae320b2d23049b4329ac70b26fd0405df9046d28b127892b14.jpeg</fileName>
+        <dateCreated>Fri, 27 Jun 2014 15:11:29 GMT</dateCreated>
+        <imageFormat>jpeg</imageFormat>
+        <compression>90</compression>
+        <width>173</width>
+        <height>241</height>
+        <bgColor>#FFFFFF</bgColor>
+        <transparent>True</transparent>
+        <border>0</border>
+        <borderColor>#000000</borderColor>
+        <constrain>False</constrain>
+        <pad>False</pad>
+      </cachedImage>
+    </image>
+  </_c>
+</imageIndex>

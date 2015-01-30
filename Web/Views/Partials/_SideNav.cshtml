@@ -1,0 +1,9 @@
+﻿@model List<WebExtensions.ViewModels.SideNav>
+<ul class="side-nav">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@item.Url"><i class="glyphicon glyphicon-leaf"></i> @item.Name</a>
+        </li>
+    }
+</ul>

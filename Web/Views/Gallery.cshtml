@@ -1,0 +1,59 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.GalleryViewModel>
+@{
+    Layout = "Shared/_InnerLayout.cshtml";
+}@if (!Model.HideTitle)
+ {
+     <h1 class="pink">@Model.Name</h1>
+ }
+<div class="col-md-12">
+    <div id="grid-gallery" class="grid-gallery">
+        <section class="grid-wrap">
+            <ul class="grid">
+                @*<li class="grid-sizer"></li>*@
+                @foreach (var image in Model.Media)
+                {
+                    <li>
+                        <figure>
+                            <img src="@image.ImageUrl" alt="@image.ImageName" />
+                            @*<figcaption><h3>@image.ImageName</h3></figcaption>*@
+                        </figure>
+                    </li>
+                }
+            </ul>
+        </section>
+        <section class="slideshow">
+            <ul>
+                @foreach (var image in Model.Media)
+                {
+                    <li>
+                        <figure>
+                            <img src="@image.ImageUrl" alt="@image.ImageName" />
+                        </figure>
+                    </li>
+                }
+            </ul>
+            <nav>
+                <span class="icon nav-prev"></span>
+                <span class="icon nav-next"></span>
+                <span class="icon nav-close"></span>
+            </nav>
+          
+        </section>
+
+    </div>
+</div>
+@section scripts
+{
+    @*@Scripts.Render("~/scripts/grid-gallery")*@
+    @Scripts.Render("~/scripts/grid-gallery/imagesloaded.pkgd.min.js", "~/scripts/grid-gallery/masonry.pkgd.min.js", "~/scripts/grid-gallery/classie.js", "~/scripts/grid-gallery/cbpGridGallery.js"
+)
+    <script>
+        new CBPGridGallery(document.getElementById('grid-gallery'));
+    </script>
+}
+@section head
+{
+    @*@Styles.Render("~/css/grid-gallery")*@
+    @Styles.Render("~/css/grid-gallery/component.css", "~/css/grid-gallery/demo.css")
+    @Scripts.Render("~/scripts/grid-gallery/modernizr.custom.js")
+}

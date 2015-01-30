@@ -1,0 +1,44 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.CategoriesMoviesViewModel>
+@{
+    Layout = "Shared/_InnerLayout.cshtml";
+    var listWidth = 180 * Model.SubCategoryMovies.Count + "px";
+}
+@if (!Model.HideTitle)
+{
+    <h1 class="purple">@Model.Name</h1>
+}
+<div class="text-cat">
+    @Html.Raw(Model.PageBody)
+</div>
+
+<ul class="category-list clearfix" style="width:@listWidth">
+    @foreach (var item in Model.SubCategoryMovies.Where(x=>x.IsVisible))
+    {
+        <li>
+            <figure>
+                <a href="@item.Url">
+                    <img src="@item.ImageUrl?width=137&height=74&mode=crop" alt="@item.Name" />
+                </a>
+                <figcaption><a href="@item.Url">@item.Name</a></figcaption>
+            </figure>
+        </li>
+    }
+</ul>
+<div class="row">
+    <div class="col-md-11 col-md-offset-1"><h2 class="MostNews">סירטונים הכי חדשים</h2></div>
+    <div class="col-md-12">
+        <ul class="category-list">
+            @foreach (var item in Model.LastMovies)
+            {
+                <li>
+                    <figure>
+                        <a href="@item.YouTubeUrl" data-type="iframe" class="fancybox">
+                            <img src="@item.SmallImageUrl" alt="@item.Name" />
+                        </a>
+                        <figcaption>@item.Name</figcaption>
+                    </figure>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

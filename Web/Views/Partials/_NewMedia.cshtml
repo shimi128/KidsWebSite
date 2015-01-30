@@ -1,0 +1,38 @@
+﻿@model List<WebExtensions.PropertyEditorTypes.MediaFolderFeature>
+<div class="col-md-12">
+    <div id="grid-gallery" class="grid-gallery">
+        <section class="grid-wrap">
+            <ul class="grid">
+                @*<li class="grid-sizer"></li>*@
+                @foreach (var image in Model)
+                {
+                    <li>
+                        <figure>
+                            <img src="@image.ImageUrl" alt="@image.ImageName" />
+                            @*<figcaption><h3>@image.ImageName</h3></figcaption>*@
+                        </figure>
+                    </li>
+                }
+            </ul>
+        </section>
+        <section class="slideshow">
+            <ul>
+                @foreach (var image in Model)
+                {
+                    <li>
+                        <figure>
+                            <img src="@image.ImageUrl" alt="@image.ImageName" />
+                        </figure>
+                    </li>
+                }
+            </ul>
+            <nav>
+                <span class="icon nav-prev"></span>
+                <span class="icon nav-next"></span>
+                <span class="icon nav-close"></span>
+            </nav>
+
+        </section>
+
+    </div>
+</div>

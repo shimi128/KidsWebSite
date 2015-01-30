@@ -1,0 +1,50 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.BaseViewModel>
+@{
+       
+}
+@*<div class="row">
+    <div class="col-sm-12">
+        <img src="/images/banner.png" class="center-block img-responsive" />
+    </div>
+</div>*@
+<div class="row">
+    <div class="nav-header col-sm-2"><a href="/"><img src="@Model.Header.HomePage.LogoUrl" /></a></div>
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-12">
+                <form action="/SearchResults" method="GET" id="search-site" class="pull-left">
+                    <input type="text" name="searchTerm" id="search" placeholder="חיפוש" minlength="3" required />
+                        <input id="searchBtn" type="submit" value="" />
+                    </form>
+</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 pull-left">
+                <nav>
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-main">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbar-main">
+                        <ul class="nav navbar-nav">
+                            <li @((Model.Id == Model.Header.HomePage.Id) ? "class=active" : string.Empty)>
+                                <a href="@Model.Header.HomePage.Url"><img src="@Model.Header.HomePage.Icon" alt="@Model.Header.HomePage.Name" /></a>
+                                <a href="@Model.Header.HomePage.Url">@Model.Header.HomePage.Name</a>
+                            </li>
+                            @foreach (var item in Model.Header.Menu)
+                            {
+                                <li @(item.IsActive ? "class=active" : string.Empty)>
+                                    <a href="@item.Url"><img src="@item.ImageIconUrl" alt="@item.Name" /></a>
+                                    <a href="@item.Url">@item.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

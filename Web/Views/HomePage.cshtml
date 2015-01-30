@@ -1,0 +1,196 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.HomePageViewModel>
+@{
+    Layout = "Shared/_Layout.cshtml";
+}
+<div class="row main-content">
+    <div class="col-sm-9">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="image1">
+                    @if (!string.IsNullOrWhiteSpace(Model.Images[0].ImageLink))
+                    {
+                        @*<figure>*@
+                        <a href="@Model.Images[0].ImageLink">
+                            @*@Model.Images[0].ImageUrl data-type="image" class="fancybox"*@
+                            <img src="@Model.Images[0].ImageUrl?width=173&height=241&mode=crop" alt="@Model.Images[0].ImageTitle" class="imgresponsive" />
+                        </a>
+                        @*<figcaption><a href="@Model.Images[0].ImageLink">@Model.Images[0].ImageTitle</a></figcaption>
+                            </figure>*@
+                    }
+                    else
+                    {
+                        <img src="@Model.Images[0].ImageUrl?width=173&height=241&mode=crop" alt="@Model.Images[0].ImageTitle" class="imgresponsive" />
+                    }
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="newsList">
+                    <div class="title">
+                        <img src="/images/title_news.png" class="img-responsive" />
+                    </div>
+                    <ul class="side-menu-news">
+                        @foreach (var item in Model.NewsPicker)
+                        {
+
+                            <li @(Model.NewsPicker[0] == item ? "class=active" : string.Empty) data-tab="@(Model.NewsPicker.IndexOf(item))">@item.Name</li>
+                        }
+                    </ul>
+                    <div class="newsItemPic">
+                        <div class="overlay"></div>
+                        <ul class="news-pic">
+                            @foreach (var item in Model.NewsPicker)
+                            {
+                                <li @(Model.NewsPicker[0] == item ? "class=newsImage" : string.Empty) data-image="@(Model.NewsPicker.IndexOf(item))">
+                                    <a href="@item.Url"><img src="@item.HomeImageUrl" alt="@item.Name" /></a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <article class="hp-text">
+                    @Html.Raw(Model.PageBody)
+                </article>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 row-divider"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="title-clips">
+                    <img src="/images/title_klips.png" alt="" class="img-responsive" />
+                    <ul class="clip-list">
+                        @foreach (var item in Model.ClipsPicker)
+                        {
+                            <li>
+                                <figure>
+                                    <a href="@item.YouTubeUrl" data-type="iframe" class="fancybox">
+                                        <img src="@item.SmallImageUrl" alt="@item.Name" />
+                                    </a>
+                                    <a href="@item.YouTubeUrl" data-type="iframe" class="fancybox">
+                                        <figcaption>@item.Name</figcaption>
+                                    </a>
+                                </figure>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="title-pics">
+                    <img src="/images/title_pics.png" alt="" class="img-responsive" />
+                    <ul class="pic-list">
+                        @foreach (var image in Model.MediaPicker)
+                        {
+                            <li>
+                                <figure>
+                                    <a href="@image.ImageUrl" data-type="image" class="fancybox">
+                                        <img src="@image.ImageUrl?width=118&height=68&mode=crop" alt="@image.ImageTitle" />
+                                    </a>
+                                    <a href="@image.ImageUrl" data-type="image" class="fancybox">
+                                        <figcaption>@image.ImageTitle</figcaption>
+                                    </a>
+                                </figure>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3">
+
+                <div class="title-movies">
+                    <img src="/images/title_movies.png" alt="" class="img-responsive" />
+                </div>
+                <ul class="pic-list">
+                    @foreach (var item in Model.MoviesPicker)
+                    {
+                        <li>
+                            <figure>
+                                <a href="@item.YouTubeUrl" data-type="iframe" class="fancybox">
+                                    <img src="@item.SmallImageUrl" alt="@item.Name" />
+                                </a>
+                                <a href="@item.YouTubeUrl" data-type="iframe" class="fancybox">
+                                    <figcaption>@item.Name</figcaption>
+                                </a>
+
+                            </figure>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 row-divider"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="title"><img src="/images/title_games.png" alt="" class="img-responsive" /></div>
+                <ul class="row game-list">
+                    @foreach (var item in Model.GamesPicker)
+                    {
+                        <li class="col-sm-6">
+                            <a href="@item.Url">
+                                <figure>
+                                    <img src="@item.SmallImageUrl" alt="@item.Name" />
+                                    <figcaption>@item.Name</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                @if (!string.IsNullOrWhiteSpace(Model.Images[2].ImageLink))
+                {
+                    @*<figure class="image2">*@
+                    <a href="@Model.Images[2].ImageLink">
+                        <img src="@Model.Images[2].ImageUrl?width=372&height=210&mode=crop" class="imgresponsive" />
+                    </a>
+                    @*<figcaption><a href="@Model.Images[2].ImageLink">@Model.Images[2].ImageTitle</a></figcaption>
+                        </figure>*@
+                }
+                else
+                {
+                    <img src="@Model.Images[2].ImageUrl?width=372&height=210&mode=crop" class="imgresponsive" />
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        @if (!string.IsNullOrWhiteSpace(Model.Images[1].ImageLink))
+        {
+            @*<figure class="image3">*@
+            <a href="@Model.Images[1].ImageLink">
+                <img src="@Model.Images[1].ImageUrl?width=240&height =98&mode =crop" class="imgresponsive" />
+            </a>
+            @*<figcaption><a href="@Model.Images[1].ImageLink">@Model.Images[1].ImageTitle</a></figcaption>
+                </figure>*@
+        }
+        else
+        {
+            <img src="@Model.Images[1].ImageUrl?width=240&height =98&mode =crop" class="imgresponsive" />
+        }
+        <!--banner-->
+        <figure class="banner-side">
+            <img src="/images/banner_side.png" class="imgresponsive" />
+        </figure>
+
+        <!--facebook like box-->
+        @if (!string.IsNullOrWhiteSpace(Model.Header.FacebookLink))
+        {
+            <div class="fb-like-box" data-href="@Model.Header.FacebookLink" data-width="262" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+        }
+        </div>
+    </div>
+@section scripts
+{
+    <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+}

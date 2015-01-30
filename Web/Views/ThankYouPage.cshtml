@@ -1,0 +1,13 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.ThankYouPageViewModel>
+@{
+    Layout = "Shared/_InnerLayout.cshtml";
+}
+@if (!Model.HideTitle)
+{
+    <h1 class="purple">@Model.Name</h1>
+}
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+    @Html.Raw(Model.PageBody)
+    </div>
+</div>

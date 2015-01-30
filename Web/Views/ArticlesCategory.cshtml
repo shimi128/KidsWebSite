@@ -1,0 +1,64 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.ArticlesCategoryViewModel>
+@{
+    Layout = "Shared/_InnerLayout.cshtml";
+
+    var firstArticle = Model.Articles.Where(x => x.IsVisible).OrderByDescending(x => x.CreateDate).First();
+    var otherArticles = Model.Articles.Where(x => x.IsVisible).OrderByDescending(x => x.CreateDate).Skip(1).ToList();
+}
+
+<section class="articles">
+    @if (!Model.HideTitle)
+    {
+        <h1 class="red">@Model.Name</h1>
+    }
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Raw(Model.PageBody)
+        </div>   
+    </div>
+    @if (firstArticle != null)
+    {
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="no-padding">
+                    <img src="@firstArticle.ArticleImageWide" alt="@firstArticle.Name" class="img-responsive" />
+                    <div class="article-content">
+                        <div class="pull-left">@firstArticle.CreateDate.ToString("dd/MM/yyyy")</div>
+                        <h3>@firstArticle.Name</h3>
+                        <div>@firstArticle.ShortText</div>
+                        <div>
+                            <a href="@firstArticle.Url">לקריאת המאמר</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-12">
+            @if (otherArticles.Any())
+            {
+                <ul class="list-inline">
+                    @foreach (var article in otherArticles)
+                    {
+                        <li>
+                            <div class="box">
+                                <img src="@article.ArticleImageUrl" alt="@article.Name" class="img-responsive" />
+                                <div class="article-content">
+                                    <div class="pull-left">@article.CreateDate.ToString("dd/MM/yyyy")</div>
+                                    <h4>@article.Name</h4>
+                                    <div>@(article.ShortText.Length > 250 ? article.ShortText.Substring(0, 250) + "..." : article.ShortText)</div>
+                                    <div>
+                                        <a href="@article.Url">לקריאת המאמר</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</section>
+
+

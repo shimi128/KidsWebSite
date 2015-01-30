@@ -1,0 +1,61 @@
+﻿@using Web.Helpers
+@model Web.Helpers.Paging
+@{
+
+    var showPaging = (Model.TotalResults > Model.ItemsPerPage);
+    var uHelper = new UmbracoHelper(UmbracoContext.Current);
+    int res;
+    int.TryParse(HttpContext.Current.Request.QueryString["res"], out res);
+    var r = res != 0 ? "&res=" + res : "";
+}
+<div class="row">
+    <div class="col-md-10 col-sm-10">
+        @if (showPaging)
+        { 
+            <ul class="pagination no-padding">
+                @RenderPaging(Model, Model.Id, uHelper, r)
+            </ul>
+        }
+    </div>
+    <div class="col-md-2 col-sm-2">
+        <label>
+            @Model.TotalResults תוצאות
+        </label>
+    </div>
+    @*<div class="col-md-2 col-sm-2">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown">
+                תוצאות בעמוד
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="@uHelper.Url(Model.Id)?res=10">10</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="@uHelper.Url(Model.Id)?res=20">20</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="@uHelper.Url(Model.Id)?res=30">30</a></li>
+            </ul>
+        </div>
+    </div>*@
+</div>
+@helper RenderPaging(Paging paging, int currentId, UmbracoHelper uHelper, string res)
+{
+    if (paging.CurrentPage > 1)
+    {
+        <li><a href="@uHelper.Url(currentId)?page=@paging.PreviousPage@res">&raquo;</a></li>
+    }
+    for (var i = 1; i <= paging.TotalPages; i++)
+    {
+        if (paging.CurrentPage == i)
+        {
+            <li class="active"><a href="#">@i <span class="sr-only">(current)</span></a></li>
+            @*@i<text>&nbsp;</text>*@
+        }
+        else
+        {
+            <li><a href="@uHelper.Url(currentId)?page=@i@res">@i</a></li>
+        }
+    }
+    if (paging.CurrentPage < paging.TotalPages)
+    {
+        <li><a href="@uHelper.Url(currentId)?page=@paging.NextPage@res">&laquo;</a></li>
+    }
+}

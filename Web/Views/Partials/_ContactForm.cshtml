@@ -1,0 +1,49 @@
+﻿@using Web.Controllers
+@model Web.Models.ContactFormModel
+
+@using (Html.BeginUmbracoForm<FormSurfaceController>("SubmitContactForm", null, new { @Class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-6 col-sm-offset-3">
+            <div class="input-group">
+                <span class="input-group-addon pink">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                @Html.TextBoxFor(model => model.FullName, new { @class = "form-control pink", placeholder = "שם מלא" })
+            </div>
+            @Html.ValidationMessageFor(model => model.FullName)
+        </div>
+        </div>
+    <div class="form-group">
+        <div class="col-md-6 col-sm-offset-3">
+            <div class="input-group">
+                <span class="input-group-addon green">@@</span>
+                @Html.TextBoxFor(model => model.EmailAddres, new { @class = "form-control green", placeholder = "כתובת מייל", type = "email", name = "emailInput" })
+            </div>
+            @Html.ValidationMessageFor(model => model.EmailAddres)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6 col-sm-offset-3">
+            <div class="input-group">
+                <span class="input-group-addon purple">
+                    <span class="glyphicon glyphicon-earphone"></span>
+                </span>
+                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control purple", placeholder = "טלפון", name = "phoneInput", maxlength = 10 })
+            </div>
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6 col-sm-offset-3 pink">
+            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", placeholder = "פרטים", cols = "40", rows = "6" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Message)
+    </div>
+    <div class="form-group">
+        <div class="col-md-6 col-sm-offset-3">
+            <input type="submit" value="שלח" class="btn btn-primary pull-left" data-toggle="tooltip" />
+        </div>
+    </div>
+}

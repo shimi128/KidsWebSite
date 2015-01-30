@@ -1,0 +1,14 @@
+﻿@model WebExtensions.ViewModels.FooterModel
+<div class="footer row">
+    <div class="col-sm-12">
+        <div>
+            @Html.Raw(Model.FooterText)
+        </div>
+        <div class="footer-main clearfix">
+            @foreach (var link in Model.FooterLink)
+            {
+                <div><a href="@link.Url" target="@link.Target">@link.Title</a></div>
+            }
+        </div>
+    </div>
+</div>

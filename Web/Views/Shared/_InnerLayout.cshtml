@@ -1,0 +1,15 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.BaseViewModel>
+@{
+    Layout = "_Layout.cshtml";
+}
+@Html.CachedPartial("_BreadCrumbs",Model.Header,5,true)
+@RenderBody()
+
+@section scripts
+{
+    @RenderSection("scripts",false)
+}
+@section head
+{
+   @RenderSection("head",false) 
+}

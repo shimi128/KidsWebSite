@@ -1,0 +1,38 @@
+﻿@using Web.Models
+@{
+    var vm = (ContactFormModel)ViewBag.Data;
+}
+
+@helper Row(string key, string value)
+{
+    if (!string.IsNullOrWhiteSpace(key) && !string.IsNullOrWhiteSpace(value))
+    {
+        <tr>
+            <td>
+                @key
+            </td>
+            <td>
+                @value
+            </td>
+        </tr>
+    }
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Field Name
+            </th>
+            <th>
+                Value
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @Row("שם", vm.FullName)
+        @Row("אימייל", vm.EmailAddres)
+        @Row("טלפון", vm.Phone)
+        @Row("הודעה", vm.Message)
+    </tbody>
+</table>

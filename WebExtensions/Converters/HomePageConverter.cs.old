@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Umbraco.Core.Models.PublishedContent;
+
+namespace WebExtensions.Converters
+{
+    public class HomePageConverter:BaseConverter
+    {
+        public override bool IsConverter(PublishedPropertyType propertyType)
+        {
+            return false;
+        }
+
+        public override object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview)
+        {
+            if (source == null || string.IsNullOrWhiteSpace(source.ToString()))
+                return null;
+
+            return Umbraco.TypedContent(source.ToString().Split(',')).Where(x => x != null);
+        }
+
+        public override object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview)
+        {
+            return null;
+        }
+
+        public override object ConvertSourceToXPath(PublishedPropertyType propertyType, object source, bool preview)
+        {
+            return null;
+        }
+    }
+}

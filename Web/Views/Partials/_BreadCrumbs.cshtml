@@ -1,0 +1,13 @@
+﻿@model WebExtensions.ViewModels.HeaderModel
+@{
+
+}
+<nav>
+    <ol class="breadcrumb">
+        @foreach (var item in Model.BreadCrumbs)
+        {
+            <li><a href="@item.Value">@item.Key</a> <i class="glyphicon-chevron-left glyphicon"></i></li>
+        }
+        <li class="active">@Model.Name</li>
+    </ol>
+</nav>

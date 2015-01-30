@@ -1,0 +1,23 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.SearchResultsViewModel>
+@{
+    Layout = "~/Views/Shared/_InnerLayout.cshtml";
+    ViewBag.Title = "searchResults";
+}
+<h1 class="green">@Model.Header.Name</h1>
+
+        <section>
+            @Model.Message
+        </section>
+        <div class="col-md-12">
+            @if (Model.Results != null && Model.Results.TotalItemCount > 0)
+            {
+                <ul class="list-group">
+                    @foreach (var result in Model.Results)
+                    {
+                        <li class="list-group-item"><i class="glyphicon glyphicon-chevron-left glyphicon"></i>
+                            <a href=" @Umbraco.NiceUrl(result.Id) ">@result.Fields["nodeName"]</a></li>
+
+                    }
+                </ul>
+            }
+        </div>

@@ -1,0 +1,10 @@
+﻿@inherits WebExtensions.MVC.WebLayout<WebExtensions.ViewModels.ContactUsViewModel>
+@{
+    Layout = "Shared/_InnerLayout.cshtml";
+}
+<h1 class="blue">@Model.Name</h1>
+<div class="col-md-12">
+    <div class="row">
+        @Html.Action("ContactForm", "FormSurface")
+    </div>
+</div>
